@@ -4,6 +4,7 @@ class Solution:
         for i, value in enumerate(nums):
             if value in h_map.keys() and abs(i - h_map[value]) <= k:
                 return True
-            h_map[value]= i
+            else:
+                h_map[value]= i
         return False
                 
