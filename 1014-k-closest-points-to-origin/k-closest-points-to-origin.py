@@ -5,7 +5,7 @@ class Solution:
         if len(points) < k:
             return []
         for x,y in points:
-            dis.append([sqrt(x**2+y**2),x,y])
+            dis.append([sqrt(pow(x,2)+pow(y,2)),x,y])
         print(dis)
         dis.sort(key = lambda x: x[0])
         print(dis)
