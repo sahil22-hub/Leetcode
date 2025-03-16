@@ -7,10 +7,10 @@ class Solution:
         for x,y in points:
             dis.append([sqrt(pow(x,2)+pow(y,2)),x,y])
         print(dis)
-        dis.sort(key = lambda x: x[0])
+        dis.sort(key = lambda x: x[0], reverse = True)
         print(dis)
-        for i in range(k):
-            output.append(dis[i][1:])
+        for _ in range(k):
+            output.append(dis.pop()[1:])
         return output 
             
 
