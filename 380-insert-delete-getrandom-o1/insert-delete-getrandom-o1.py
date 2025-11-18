@@ -1,13 +1,13 @@
 class RandomizedSet:
     def __init__(self):
         self.list = []
-        self.var = set()
+        self.var = {}
 
     def insert(self, val: int) -> bool:
         if val in self.var:
             return False
         
-        self.var.add(val)
+        self.var[val] = len(self.list)
         self.list.append(val)
         return True
 
@@ -15,8 +15,14 @@ class RandomizedSet:
         if val not in self.var:
             return False
         
-        self.list.remove(val)
-        self.var.remove(val)
+        idx_to_remove = self.var[val]
+        last_element = self.list[-1]
+
+        self.list[idx_to_remove] = last_element
+        self.var[last_element] = idx_to_remove
+
+        self.list.pop()
+        del self.var[val]
         return True
 
     def getRandom(self) -> int:
