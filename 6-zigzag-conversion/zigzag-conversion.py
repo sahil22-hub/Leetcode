@@ -1,24 +1,23 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        matrix = [[] for _ in range(numRows)]
-        i,j =0,0
-        temp = s
-        result = ""
-        if numRows == 1:
+        if numRows == 1 or numRows >= len(s):
             return s
-        while temp:
-            while i < numRows and temp:
-                matrix[i].append(temp[0])
-                temp = temp[1:]
-                i += 1
-            i -= 1
-            while i-1 >= 0 and temp:
-                i -= 1
-                matrix[i].append(temp[0])
-                temp = temp[1:]
-            i += 1
-        print(matrix)
-        for x in matrix:
-            k = "".join(x)
-            result = result + k
-        return result
+        
+        #create rows
+        rows = ['']*numRows
+        current_row = 0
+        down = False
+
+        for char in s:
+            rows[current_row] += char
+
+            if current_row == 0 or current_row == numRows - 1:
+                down = not down
+
+            # Move to next row
+            current_row += 1 if down else -1
+        print(rows)
+
+        return ''.join(rows)
+
+        
